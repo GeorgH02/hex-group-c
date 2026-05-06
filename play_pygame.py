@@ -1,5 +1,5 @@
 from hex_engine import HexPygameApp
-from submission.facade import agent
+from submission.facade_groupC import agent
 
 
 def ask_mode():

@@ -1,5 +1,5 @@
 import hex_engine as engine
-from submission.facade import agent
+from submission.facade_groupC import agent
 
 
 game = engine.hexPosition()
