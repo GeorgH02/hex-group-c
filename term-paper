@@ -1,0 +1,35 @@
+1) Introduction
+
+1.1) The game of HEX
+HEX is a two player board game invented in 1942. It was rediscovered in the late 1940s and first marketed in 1952. It has simple rules, but a high number of possible moves. The board with n*n hexagons can have any possible size. However, it is usually played on boards with n of 11, 13 or 19. Figure PICTURE presents an example board. In the beginning of the game, the board is empty. Each player is assigned two parallel edges of the board. Then, the players alternate, placing objects of their color on an empty hexagon. Their goal is to place their objects in a chain, that connects their assigned edges. Usually, the player that places the first object would have an advantage. For this reason, the swap rule can be used. It defines, that after one player places the first object, the other player is allowed to choose which color they pick.
+(https://www.hexwiki.net/index.php)
+
+PICTURE
+
+
+1.2) Reinforcement Learning
+Reinforcement Learning (RL) is a field of Machine Learning (ML). In contrast to other types of ML, RL problems often do not include data to learn from in the beginning. Instead, an agent learns by trying out actions in specific states of their environment. When the agent takes an action in a specific state, the environment changes and the agent is in a new state. The agent tries to reach a defined goal. While doing so, the agent receives rewards for the taken actions. These rewards can be either positive or negative. On one hand, the agent wants to receive high rewards as fast as possible. They can achieve this by taking actions that generated high rewards in the past. On the other side, they also want to try out new actions, that might generate an even higher reward. Therefore, exploitation and exploration need to be balanced.
+(https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf, p1-p5)
+
+1.3) Motivation
+
+Games like HEX or Go are suited well for early RL projects, because they have simple rules, but a high number of possible moves. Already in 1953, AI was used to play HEX.
+(https://www.hexwiki.net/index.php)
+
+The goal of this project is to explore RL methods, by creating RL agents that can play HEX on different board sizes. These agents are later used to play against humans or other agents.
+
+AlphaGo Zero is a popular RL algorithm that can play the game Go. AlphaZero is a generalized version of AlphaGo that can be used for various board games. It already outperformed humans in the games chess, shogi and Go. AlphaZero requires only the rules of the played game and no additional data.
+(https://arxiv.org/abs/1712.01815, p1-p2)
+This algorithm set a milestone in RL and seems to be well suited for HEX. Therefore, it will be used in this project.
+
+1.4) State of the art
+AlphaZero is considered state of the art for several board games including HEX (https://arxiv.org/abs/2211.14673, p1). It learns entirely from self-play and does not use an evaluation function or move ordering heuristics. As a substitute, it uses a deep neural network. It predicts the move probabilities for the possible actions and the estimated expected outcome, using the state. AlphaZero also replaces alpha-beta search with a Monte-Carlo tree search (MCTS) algorithm. For each search, multiple simulated games are played. In the simulated games, actions are chosen for every state based on the neural network. Actions with low visit count, high move probability and high value are preferred. MCTS finally outputs a probability distribution of the possible actions.
+(https://arxiv.org/abs/1712.01815, p1-p3)
+
+Polygames is an algorithm based on AlphaZero. It is entirely convolutional and does not utilize a fully connected layer, but global pooling. As a result, the agent is able to play on any board size. In addition, old checkpoints of the agent are used to train the agent. Thereby, even HEX games of 19x19 can be won against humans.
+(https://arxiv.org/abs/2001.09832, p1)
+
+Dual Monte Carlo Tree Search reduces the training time and the required computational power of the traditional AlphaZero algorithm. This is achieved by using two trees instead of one. First, a small tree is used for many searches. Afterwards, simulations are run on a big tree that prefers the actions chosen by the small tree.
+(https://arxiv.org/abs/2103.11517, p1-p3)
+
+1.5) Structure
